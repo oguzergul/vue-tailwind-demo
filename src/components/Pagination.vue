@@ -7,11 +7,11 @@
           aria-label="Pagination"
         >
           <button
+            @click="$emit('onPrev', $event)"
             class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
           >
             <span class="">Previous</span>
           </button>
-          <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
           <div class="border flex items-center justify-center px-6">
             <p class="text-sm text-gray-700">
               Showing
@@ -30,6 +30,7 @@
             </p>
           </div>
           <button
+            @click="$emit('onNext', $event)"
             class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
           >
             <span class="">Next</span>

@@ -8,7 +8,9 @@
             class="mr-2 text-sm font-medium text-gray-900"
             >{{ crumb.label }}</a
           >
-          <Arrow v-if="breadcrumb.indexOf(crumb) !== breadcrumb.length - 1" />
+          <span v-if="breadcrumb.indexOf(crumb) !== breadcrumb.length - 1">
+            > &nbsp;
+          </span>
         </div>
       </li>
     </ol>
@@ -16,10 +18,8 @@
 </template>
 
 <script>
-import Arrow from "./Arrow.vue";
 export default {
   name: "Breadcrumbs",
-  components: { Arrow },
   props: {
     breadcrumb: {
       type: Array,

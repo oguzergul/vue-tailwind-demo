@@ -22,16 +22,21 @@ export default new Vuex.Store({
     ADD_TO_FAVORITES(state, payload) {
       state.favorites.push(payload);
     },
+    REMOVE_FROM_FAVORITES(state, payload) {
+      console.log("favs", state.favorites);
+      console.log("payload", payload);
+      state.favorites = state.favorites.filter(
+        (favorite) => favorite !== payload
+      );
+    },
     SET_ROAD_DETAILS(state, payload) {
       state.roadDetails = payload;
     },
     SAVE_COMMENT(state, payload) {
       state.comments.push(payload);
-      console.log("coommentply", payload);
     },
     SAVE_COLOR_CODE(state, payload) {
       state.colors.push(payload);
-      console.log("color", payload);
     },
   },
   actions: {
@@ -42,7 +47,6 @@ export default new Vuex.Store({
     },
     GET_OTOBAN_BY_ID({ commit }, payload) {
       axiosInstance.get(`/${payload}/services/roadworks`).then((response) => {
-        console.log(response.data);
         commit("SET_ROAD_DETAILS", response.data.roadworks);
       });
     },
@@ -54,20 +58,26 @@ export default new Vuex.Store({
         road: payload.id,
         comment: payload.comment,
       });
+    },
+    SAVE_COLOR_CODE({ commit }, payload) {
       commit("SAVE_COLOR_CODE", {
         road: payload.id,
         colorCode: payload.color,
       });
+    },
+    REMOVE_FAVORITE({ commit }, payload) {
+      console.log(payload);
+      commit("REMOVE_FROM_FAVORITES", payload);
     },
   },
   getters: {
     _get_roads(state) {
       return state.roads;
     },
-    GET_ROAD_DETAILS(state) {
+    _get_road_details(state) {
       return state.roadDetails;
     },
-    GET_COMMENTS(state) {
+    _get_comments(state) {
       return state.comments;
     },
     _get_favorite_roads(state) {
