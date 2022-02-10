@@ -23,8 +23,6 @@ export default new Vuex.Store({
       state.favorites.push(payload);
     },
     REMOVE_FROM_FAVORITES(state, payload) {
-      console.log("favs", state.favorites);
-      console.log("payload", payload);
       state.favorites = state.favorites.filter(
         (favorite) => favorite !== payload
       );
@@ -51,7 +49,9 @@ export default new Vuex.Store({
       });
     },
     ADD_TO_FAVORITES({ commit }, payload) {
-      commit("ADD_TO_FAVORITES", payload);
+      if (!this.state.favorites.includes(payload)) {
+        commit("ADD_TO_FAVORITES", payload);
+      }
     },
     SAVE_COMMENT({ commit }, payload) {
       commit("SAVE_COMMENT", {
@@ -66,7 +66,6 @@ export default new Vuex.Store({
       });
     },
     REMOVE_FAVORITE({ commit }, payload) {
-      console.log(payload);
       commit("REMOVE_FROM_FAVORITES", payload);
     },
   },

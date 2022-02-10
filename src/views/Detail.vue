@@ -64,7 +64,6 @@ import Input from "../components/Input.vue";
 import Container from "../components/Container.vue";
 import Button from "../components/Button.vue";
 import Heading from "../components/Heading.vue";
-import Text from "../components/Text.vue";
 import Breadcrumbs from "../components/Breadcrumbs.vue";
 import CommentList from "../components/CommentList.vue";
 import RoadCard from "../components/RoadCard.vue";
@@ -76,7 +75,6 @@ export default {
     Input,
     Button,
     Heading,
-    Text,
     Breadcrumbs,
     CommentList,
   },
@@ -103,7 +101,7 @@ export default {
     },
     saveColor() {
       if (this.color !== " ") {
-        this.$store.dispatch("SAVE_COLOR", {
+        this.$store.dispatch("SAVE_COLOR_CODE", {
           id: this.$route.params.id,
           color: this.color,
         });
@@ -113,7 +111,6 @@ export default {
       }
     },
     removeFromFavorites() {
-      console.log("remove from favorites", this.$route.params.id);
       this.$store.dispatch("REMOVE_FAVORITE", this.$route.params.id);
     },
   },

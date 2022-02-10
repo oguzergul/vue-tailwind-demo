@@ -6,9 +6,9 @@
       <span v-if="roadName" class="block"
         ><strong>Road Name:</strong> {{ roadName }}</span
       >
-      <span v-if="color" class="block"
-        ><strong>Color Code:</strong> {{ color[0].colorCode || "" }}</span
-      >
+      <span v-if="color_code" class="block"
+        ><strong>Color Code:</strong>{{ color_code }}
+      </span>
 
       <span v-if="lat" class="block"><strong>Lat:</strong> {{ lat }}</span>
       <span v-if="lang" class="block"><strong>Long:</strong> {{ lang }}</span>
@@ -36,7 +36,10 @@
       >
         Details
       </div>
-      <div class="p-3 cursor-pointer" @click="addToFavorites(roadName)">
+      <div
+        class="flex items-center justify-center p-3 cursor-pointer"
+        @click="addToFavorites(roadName)"
+      >
         Add To Favorite
       </div>
     </div>
@@ -77,16 +80,21 @@ export default {
     },
     description: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     color: {
-      type: String,
-      default: "",
+      type: [Array, String],
+      default: () => [],
     },
   },
   methods: {
     addToFavorites(roadName) {
       this.$store.dispatch("ADD_TO_FAVORITES", roadName);
+    },
+  },
+  computed: {
+    color_code() {
+      return this.color.length > 0 ? this.color[0].colorCode : "";
     },
   },
 };

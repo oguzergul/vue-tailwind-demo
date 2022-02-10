@@ -7,7 +7,7 @@
       ]"
     />
     <stack>
-      <heading> Favorites </heading>
+      <heading> Favorites</heading>
       <div
         v-if="_favorite_roads_data.length > 0"
         class="mt-10 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
